@@ -52,6 +52,18 @@ function($scope, postFactory){
   $scope.incrementUpvotes = function(post) {
     post.upvotes += 1;
   };
+
+}])
+.controller('PostsCtrl', [
+'$scope',
+'$stateParams',
+'postFactory',
+function($scope, $stateParams, postFactory){
+  $scope.post = postFactory.posts[$stateParams.id];
+  
+  $scope.incrementUpvotes = function(post) {
+    post.upvotes += 1;
+  };
   
   $scope.addComment = function(){
   if($scope.body === '') {
@@ -64,13 +76,4 @@ function($scope, postFactory){
   });
   $scope.body = '';
 };
-
-}])
-.controller('PostsCtrl', [
-'$scope',
-'$stateParams',
-'posts',
-function($scope, $stateParams, posts){
-  $scope.post = posts.posts[$stateParams.id];
-  
 }]);
